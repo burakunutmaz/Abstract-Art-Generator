@@ -31,3 +31,6 @@ For the slider options, we have *Complexity* and *Size*.<br />
 
 ### Extra
 I have included an **examples** folder, and inside it there are **5** example abstract artworks. Just to show what can be done. And there is also an info.txt file in the folder that acts as a guide to create the same artworks yourself.<br />
+Make sure to have all the packages required installed, and keep the files in the same folder.<br />
+It might take a few seconds to fully run for the first time use. Use command prompt to run the .py file like this:
+> python art_generator.py
