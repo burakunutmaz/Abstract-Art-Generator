@@ -1,0 +1,33 @@
+This text file is just to inform you about how the example arts were made.
+Even with exactly the same options, the outcome might differ due to some elements
+relying on randomness (controlled randomness). But that's the fun of it.
+
+example_1:
+	Color palette 	- Vampire
+	Layer one 	- Chaotic Dots
+	Layer two	- Mosaic Lines
+	Overlay		- First overlay
+
+example_2:
+	Color palette 	- Corruption
+	Layer one 	- Striped Vertical Rings
+	Layer two	- Striped Vertical Dots
+	Overlay		- Sixth overlay
+
+example_3:
+	Color palette 	- Ocean
+	Layer one 	- Centered Circles
+	Layer two	- Centered Lines
+	Overlay		- No overlay (7th option)
+
+example_4:
+	Color palette 	- Lilac
+	Layer one 	- Cornered Dots
+	Layer two	- Centered Filled Polygons
+	Overlay		- Second overlay
+
+example_5:
+	Color palette 	- Lightning
+	Layer one 	- Striped Horizontal Circles
+	Layer two	- Striped Horizontal Curves
+	Overlay		- No overlay (7th option)
