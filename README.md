@@ -1,3 +1,4 @@
+For the youtube video: https://www.youtube.com/watch?v=Xz0j2kR4uDo
 # Abstract Art Generator
 Summary: A python program that generates abstract art with variety of styles, shapes, adjustable options and randomization, using pygame.
 
