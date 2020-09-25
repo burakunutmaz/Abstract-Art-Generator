@@ -1,3 +1,4 @@
+#Importing random.randint module 
 from random import randint
 
 color_palettes = [
@@ -23,6 +24,7 @@ color_palettes = [
     ["#fcf0c8", "#f7d098", "#911f27", "#630a10"]
 ]
 
+# name given to the palette
 color_palette_names = [
     "Forest",
     "Futuristic",
@@ -46,7 +48,7 @@ color_palette_names = [
     "Royalty"
 ]
 
-
+# Palette can choose a particular colour and shows us the palette to us in UI
 class Palette:
     def __init__(self):
         self.palettes = color_palettes
