@@ -1278,8 +1278,11 @@ while run:
 
                 if event.ui_object_id == "export_art_button":
                     path = c1.export_art()
-                    pg.image.save(c1.canvas, path + ".png")
-
+                    if path:
+                        pg.image.save(c1.canvas, path + ".png")
+                    else:
+                        pass
+                    
                 if event.ui_object_id == "lock_button_one":
                     option_locks[0] = 1 if option_locks[0] == 0 else 0
                 if event.ui_object_id == "lock_button_two":
