@@ -70,6 +70,12 @@ art_shapes_list = [
     "Rings"
 ]
 
+resolutions_list = [
+    "4K: 3840x2160",
+    "Full HD: 1920x1080",
+    "HD: 1280x720"
+]
+
 
 class Canvas:
     def __init__(self, size, display_size):
@@ -947,6 +953,8 @@ option_locks = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 help_opt = 0
 
+export_resolution = resolutions_list[0]
+
 
 def draw_menu(window, color_palette, option_locks, help_opt):
     ui_h1_color = (250, 250, 250)
@@ -1021,6 +1029,8 @@ def draw_menu(window, color_palette, option_locks, help_opt):
 
     text_to_screen(window=window, text="OVERLAY", color=ui_h1_color, pos=(SW-190, 160), font_size=24)
 
+    text_to_screen(window=window, text="RESOLUTION", color=ui_color, pos=(SW-240, 560), font_size=14)
+
     pg.draw.rect(window, pg.Color("#2B2834"), (SW-245, 190, 210, 320))
 
     active_color = (90, 90, 90)
@@ -1079,6 +1089,11 @@ def generate_ui():
                                                             starting_option=layer_two_shape,
                                                             relative_rect=pg.Rect(lm, 455, 200, 22), manager=ui_manager,
                                                             object_id="layer_two_shape_dropdown")
+
+    resolution_dropdown = pgui.elements.UIDropDownMenu(options_list=resolutions_list,
+                                                       starting_option=export_resolution,
+                                                       relative_rect=pg.Rect(SW-240, 575, 200, 22), manager=ui_manager,
+                                                       object_id = "resolution_dropdown")
 
     layer_two_complexity_slider = pgui.elements.UIHorizontalSlider(relative_rect=pg.Rect(lm, 505, 200, 22),
                                                                    start_value=layer_two_complexity,
@@ -1279,7 +1294,12 @@ while run:
                 if event.ui_object_id == "export_art_button":
                     path = c1.export_art()
                     if path:
-                        pg.image.save(c1.canvas, path + ".png")
+                        if export_resolution == resolutions_list[0]:
+                            pg.image.save(c1.canvas, path + ".png")
+                        elif export_resolution == resolutions_list[1]:
+                            pg.image.save(pg.transform.smoothscale(c1.canvas, (1920, 1080)), path + ".png")
+                        elif export_resolution == resolutions_list[2]:
+                            pg.image.save(pg.transform.smoothscale(c1.canvas, (1280, 720)), path + ".png")
                     else:
                         pass
                     
@@ -1326,6 +1346,8 @@ while run:
                     c1.blit_to_canvas()
 
             if event.user_type == pgui.UI_DROP_DOWN_MENU_CHANGED:
+                if event.ui_object_id == "resolution_dropdown":
+                    export_resolution = event.text
                 if event.ui_object_id == "current_palette_dropdown":
                     current_color_palette = p1.get_colors_from_palette(event.text)
                 if event.ui_object_id == "layer_one_style_dropdown":
