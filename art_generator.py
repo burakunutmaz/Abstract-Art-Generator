@@ -70,7 +70,12 @@ art_shapes_list = [
     "Rings",
 ]
 
-resolutions_list = ["4K: 3840x2160", "Full HD: 1920x1080", "HD: 1280x720"]
+resolutions = {
+    "4K": "3840x2160",
+    "Quad HD": "2560x1440",
+    "Full HD": "1920x1080",
+    "HD": "1280x720",
+}
 
 
 class Canvas:
@@ -1266,7 +1271,7 @@ option_locks = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 help_opt = 0
 
-export_resolution = resolutions_list[0]
+export_resolution = [key for key in resolutions.keys()][-1]
 
 
 def draw_menu(window, color_palette, option_locks, help_opt):
@@ -1526,8 +1531,9 @@ def generate_ui():
         object_id="layer_two_shape_dropdown",
     )
 
+    dropdown_resolution_options = [key for key in resolutions.keys()]
     resolution_dropdown = pgui.elements.UIDropDownMenu(
-        options_list=resolutions_list,
+        options_list=dropdown_resolution_options,
         starting_option=export_resolution,
         relative_rect=pg.Rect(SW - 240, 575, 200, 22),
         manager=ui_manager,
@@ -1886,7 +1892,6 @@ while run:
         if event.type == pg.USEREVENT:
             if event.user_type == pgui.UI_BUTTON_PRESSED:
                 if event.ui_object_id == "generate_button":
-
                     cp = current_color_palette.copy()
                     bg_color = cp[randint(0, len(cp) - 1)]
                     c1.generate_bg(bg_color)
@@ -1968,18 +1973,12 @@ while run:
                 if event.ui_object_id == "export_art_button":
                     path = c1.export_art()
                     if path:
-                        if export_resolution == resolutions_list[0]:
-                            pg.image.save(c1.canvas, path + ".png")
-                        elif export_resolution == resolutions_list[1]:
-                            pg.image.save(
-                                pg.transform.smoothscale(c1.canvas, (1920, 1080)),
-                                path + ".png",
-                            )
-                        elif export_resolution == resolutions_list[2]:
-                            pg.image.save(
-                                pg.transform.smoothscale(c1.canvas, (1280, 720)),
-                                path + ".png",
-                            )
+                        export_res = resolutions[export_resolution]
+                        resolution = int(export_res.split("x")[0]), int(export_res.split("x")[1])
+                        transformed_image = pg.transform.smoothscale(
+                            c1.canvas, resolution
+                        )
+                        pg.image.save(transformed_image, path + ".png")
                     else:
                         pass
 
