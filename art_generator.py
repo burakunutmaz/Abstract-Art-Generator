@@ -1271,7 +1271,7 @@ option_locks = [0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 help_opt = 0
 
-export_resolution = [key for key in resolutions.keys()][-1]
+export_resolution = list(resolutions.keys())[-1]
 
 
 def draw_menu(window, color_palette, option_locks, help_opt):
